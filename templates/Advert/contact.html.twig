@@ -1,0 +1,20 @@
+{# templates/Advert/contact.html.twig #}
+
+{% extends "CoreBundle/layout.html.twig" %}
+
+
+{% block title %}
+	Contact -
+	{{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+
+
+    {% for message in app.flashes('info') %}
+        <div class="bg-info">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{# templates/Advert/edit.html.twig #}
+
+
+{% extends "CoreBundle/layout.html.twig" %}
+
+
+{% block title %}
+    Modifier une annonce -
+    {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+
+    <h2>Modifier une annonce</h2>
+
+    <p>
+        Vous éditez une annonce déjà existante, merci de ne pas changer
+            l'esprit général de l'annonce déjà publiée.
+    </p>
+
+    <div class="row">
+        <div
+            class="col-sm-2">
+            {# On vérifie qu'une image soit bien associée à l'annonce #}
+            {% if advert.image is not null %}
+                <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}" class="rounded mx-auto d-block" style="width:120%">
+
+            {% endif %}
+        </div>
+        <div class="col-sm-10">
+            <h2>{{ advert.title }}</h2>
+            <i>Par
+                {{ advert.author }}, le
+                {{ advert.date|date('d/m/Y') }}</i>
+        </div>
+    </div>
+    <div class="well">
+        <p>Cette annonce est parue dans les catégories suivantes :</p>
+        <ul>
+            {% for categorie in advert.getCategories %}
+                <li>
+                    {{ categorie.name }}
+                </li>
+            {% else %}
+                <li>Pas (encore !) de categories</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    <p>
+        <a href="{{ path('oc_advert_view', {'id': advert.id}) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à l'annonce
+        </a>
+    </p>
+
+{% endblock %}

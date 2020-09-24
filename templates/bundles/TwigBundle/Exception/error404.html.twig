@@ -1,0 +1,11 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>Page not found</h1>
+
+	<p>
+		Erreur 404 (page créer par moi-même)
+		<a href="{{ path('oc_advert_index') }}">retour à la page d'accueil</a>.
+	</p>
+{% endblock %}

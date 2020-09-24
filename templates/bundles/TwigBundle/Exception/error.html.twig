@@ -1,0 +1,12 @@
+{# templates/bundles/TwigBundle/Exception/error.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>Page not found</h1>
+
+	<p>
+	<h2>Autres Erreurs : The server returned a "{{ status_code }}	{{ status_text }}".</h2>(page créer par moi-même)
+
+		<a href="{{ path('oc_advert_index') }}">retour à la page d'accueil</a>.
+	</p>
+{% endblock %}

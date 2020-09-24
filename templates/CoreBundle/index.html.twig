@@ -1,0 +1,40 @@
+{# templates/CoreBundle/index.html.twig #}
+
+{% extends "CoreBundle/layout.html.twig" %}
+
+{% block title %}
+    Accueil -
+    {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+
+    <h2>Hello</h2>
+    
+    {% for message in app.flashes('warning') %}
+        <div class="bg-info">
+        {{ message }}
+        </div>
+    {% endfor %}
+
+    <hr>
+
+    <h4> Mes 3 dernières annonces :</h4>
+    <ul>
+        {% for advert in listAdverts %}
+            <li>{{ advert.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+
+    <hr>
+    <a href="{{ path('cb_contact_action') }}" class="btn btn-default">
+    <i class="glyphicon glyphicon-envelope"></i>
+
+        Contacter nous !
+    </a>
+
+
+
+{% endblock %}
+

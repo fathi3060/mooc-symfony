@@ -1,0 +1,19 @@
+{# templates/Advert/add.html.twig #}
+
+
+{% extends "CoreBundle/layout.html.twig" %}
+
+
+{% block title %}
+    Ajouter une annonce -
+    {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+
+    <h2>Ajouter une annonce</h2>
+
+    {{ include("Advert/form.html.twig") }}
+
+{% endblock %}
+

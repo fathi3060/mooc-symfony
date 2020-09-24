@@ -1,0 +1,73 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# config/routes.yaml
+#oc_advert_view:
+#    path:      /advert/{advert_id}
+#    defaults:
+#        _controller: App\Controller\OC\AdvertController::viewAction
+#    requirements:
+#        id: \d+
+
+oc_advert_add:
+    path:       /advert/add
+    controller: App\Controller\OC\AdvertController::addAction
+
+oc_platform_purge:
+    path:      /purge/{days}
+    defaults:  { _controller: App\Controller\OC\AdvertController::purgeAction }
+    requirements:
+        days: \d+
+
+oc_core_home:
+    path: /
+    controller: App\Controller\OC\CoreController::indexAction
+
+oc_core_contact:
+    path: /contact
+    controller: App\Controller\OC\CoreController::contactAction
+
+#login:
+#    path: /login
+#    defaults:
+#        _controller: App\Controller\OC\SecurityController::loginAction
+
+#login_check:
+#    path: /login_check
+
+#logout:
+#    path: /logout
+
+#routes concernant les pages de connection, d'inscription.
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+oc_platform_translation:
+    path:     /{_locale}/traduction/{name}
+    defaults:
+        _controller: App\Controller\OC\AdvertController::translationAction
+    condition:  "'%kernel.environment%' === 'dev'"
+    requirements:
+        _locale: en|fr # les locales disponibles, séparées par des pipes « | »
+
+oc_platform_paramconverter:
+    path: /test/{json}
+    defaults:
+        _controller: App\Controller\OC\AdvertController::ParamConverterAction

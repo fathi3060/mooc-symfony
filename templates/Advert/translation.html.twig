@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div>
+            <p>{{ 'hello'|trans({'%name%': 'moi-même'}) }}</p>
+            <div>Aujourd'hui nous sommes le {{ 'now'|localizeddate('full', 'none') }} et il est {{ 'now'|localizeddate('none', 'short') }}</div>
+            <button>{{ 'cancel'|trans }}</button>
+            <button>{{ 'validate'|trans }}</button>
+        </div>
+
+    </body>
+</html>

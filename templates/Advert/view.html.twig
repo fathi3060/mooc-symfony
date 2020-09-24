@@ -1,0 +1,70 @@
+{# templates/Advert/view.html.twig #}
+
+{% extends "CoreBundle/layout.html.twig" %}
+
+
+{% block title %}
+    Lecture d'une annonce -
+    {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+    <div class="row">
+        <div  class="col-sm-2">
+            {# On vérifie qu'une image soit bien associée à l'annonce #}
+            {% if advert.image is not null %}
+                <img src="{{ asset(advert.image.webPath) }}" alt="{{ advert.image.alt }}" class="rounded mx-auto d-block" style="width:120%">
+            {% endif %}
+        </div>
+        <div class="col-sm-10">
+            <h2>{{ advert.slug }}</h2>
+            <i>Par
+                {{ advert.author }}, le
+                {{ advert.date|date('d/m/Y') }}</i>
+        </div>
+    </div>
+    <div class="well">
+        {{ advert.content }}
+    </div>
+    <div class="well">
+        <ul>
+            {% for application in listApplications %}
+                <li> {{ application.content }} par {{ application.author }}, le {{ application.date|date('d/m/Y') }}
+                </li>
+            {% else %}
+                <li>Pas (encore !) de candidatures</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if listAdvertSkills|length > 0 %}
+        <div class="well">
+            Cette annonce requiert les compétences suivantes :
+            <ul>
+                {% for advertSkill in listAdvertSkills %}
+                    <li>{{ advertSkill.skill.name }}
+                        : niveau
+                        {{ advertSkill.level }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+
+    <p>
+        <a href="{{ path('oc_advert_index') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à la liste
+        </a>
+        <a href="{{ path('oc_advert_edit', {'id': advert.id}) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-edit"></i>
+            Modifier l'annonce
+        </a>
+        <a href="{{ path('oc_advert_delete', {'id': advert.id}) }}" class="btn btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>
+            Supprimer l'annonce
+        </a>
+    </p>
+
+{% endblock %}
+
